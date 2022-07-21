@@ -4,7 +4,7 @@ on: [push]
 
 jobs:
   build:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
     - name: Create Azure Blueprint
       uses: neilpeterson/action-create-blueprint@master
@@ -18,7 +18,7 @@ jobs:
         blueprintPath: ./create
   deploy:
     needs: build
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
     - name: Assign Azure Blueprint
       uses: neilpeterson/action-assign-blueprint@master
