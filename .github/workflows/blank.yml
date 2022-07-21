@@ -16,18 +16,6 @@ jobs:
         azureManagementGroupName: nepeters-internal
         blueprintName: actionBlueprintPublish
         blueprintPath: ./create
-    - name: Publish the blueprint
-      env:
-        SUBSCRIPTIONID: 0dcde382-dac2-44d0-b746-1e0bf404c20f
-        BLUEPRINTPATH: ./infrastructure
-        BLUEPRINTNAME: testBluePrint
-        SPNID: 35670f35-bbb7-4d20-b8e0-8ca76c4e008c
-        SPNPASS: ${{ secrets.spnPass }}
-        TENANTID: c10899d7-fac0-4b82-98f4-e89021fb4476
-        VERSION: 2.0.0
-        MGID: Blueprints
-      run: ./01-publishBlueprint.ps1
-      shell: pwsh
   deploy:
     needs: build
     runs-on: ubuntu-latest
