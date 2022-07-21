@@ -6,18 +6,16 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: neilpeterson/action-create-blueprint@v1.0.0.0-alpha
     - name: Create Azure Blueprint
+      uses: neilpeterson/action-create-blueprint@master
       env:
-        SUBSCRIPTIONID: 0dcde382-dac2-44d0-b746-1e0bf404c20f
-        BLUEPRINTPATH: ./infrastructure
-        BLUEPRINTNAME: testBluePrint
-        SPNID: 35670f35-bbb7-4d20-b8e0-8ca76c4e008c
-        SPNPASS: ${{ secrets.spnPass }}
-        TENANTID: eb73c9bc-7f90-4841-9556-c3a56cc82c79
-        MGID: charotmg
-      run: ./00-importBlueprint.ps1
-      shell: pwsh
+        AZURETENANTID: ${{ secrets.AZURETENANTID }}
+        AZURECLIENTID: ${{ secrets.AZURECLIENTID }}
+        AZUREPASSWORD: ${{ secrets.AZUREPASSWORD }}
+      with:
+        azureManagementGroupName: nepeters-internal
+        blueprintName: actionBlueprintPublish
+        blueprintPath: ./create
     - name: Publish the blueprint
       env:
         SUBSCRIPTIONID: 0dcde382-dac2-44d0-b746-1e0bf404c20f
@@ -34,15 +32,15 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
-    - name: Assign the blueprint
+    - name: Assign Azure Blueprint
+      uses: neilpeterson/action-assign-blueprint@master
       env:
-        SUBSCRIPTIONID: 0dcde382-dac2-44d0-b746-1e0bf404c20f
-        ASSIGNMENTFILE: ./infrastructure/assign.json
-        BLUEPRINTNAME: testBluePrint
-        SPNID: 35670f35-bbb7-4d20-b8e0-8ca76c4e008c
-        SPNPASS: ${{ secrets.spnPass }}
-        TENANTID: c10899d7-fac0-4b82-98f4-e89021fb4476
-        VERSION: 1.0.0
-      run: ./02-assignBlueprint.ps1
-      shell: pwsh
+        AZURETENANTID: ${{ secrets.AZURETENANTID }}
+        AZUREPASSWORD: ${{ secrets.AZUREPASSWORD }}
+        AZURECLIENTID: ${{ secrets.AZURECLIENTID }}
+      with:
+        AssignmentName: actionBlueprintPublish
+        azureManagementGroupName: nepeters-internal
+        blueprintName: actionBlueprintPublish
+        azureSubscriptionID: 00000000-0000-0000-0000-000000000000
+        AssignmentFilePath: ./assign/assign-blueprint.json
