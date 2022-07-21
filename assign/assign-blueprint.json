@@ -1,0 +1,16 @@
+{
+  "identity": {
+    "type": "SystemAssigned"
+  },
+  "location": "eastus",
+  "properties": {
+    "description": "TWO enforce pre-defined simpleBlueprint to this XXXXXXXX subscription.",
+    "resourceGroups": {
+      "blueprint-demo": {
+        "name": "blueprint-demo-two",
+        "location": "eastus"
+      }
+    },
+    "parameters": {}
+  }
+}
