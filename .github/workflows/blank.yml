@@ -4,7 +4,7 @@ on: [push]
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     steps:
     - name: Create Azure Blueprint
       uses: neilpeterson/action-create-blueprint@master
@@ -13,12 +13,12 @@ jobs:
         AZURECLIENTID: ${{ secrets.AZURECLIENTID }}
         AZUREPASSWORD: ${{ secrets.AZUREPASSWORD }}
       with:
-        azureManagementGroupName: nepeters-internal
-        blueprintName: actionBlueprintPublish
+        azureManagementGroupName: Blueprints
+        blueprintName: blueprint.json
         blueprintPath: ./create
   deploy:
     needs: build
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     steps:
     - name: Assign Azure Blueprint
       uses: neilpeterson/action-assign-blueprint@master
@@ -28,7 +28,7 @@ jobs:
         AZURECLIENTID: ${{ secrets.AZURECLIENTID }}
       with:
         AssignmentName: actionBlueprintPublish
-        azureManagementGroupName: nepeters-internal
-        blueprintName: actionBlueprintPublish
+        azureManagementGroupName: Blueprints
+        blueprintName: blueprint.json
         azureSubscriptionID: 00000000-0000-0000-0000-000000000000
         AssignmentFilePath: ./assign/assign-blueprint.json
