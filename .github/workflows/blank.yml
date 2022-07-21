@@ -1,28 +1,3 @@
-# This is a basic workflow to help you get started with Actions
-
-- name: Azure Login
-  uses: Azure/login@v1.4.5
-  with:
-    # Paste output of `az ad sp create-for-rbac` as value of secret variable: AZURE_CREDENTIALS
-    creds: $AZURE_CREDENTIALS
-    # ClientId of the Azure Service principal created.
-    client-id: 35670f35-bbb7-4d20-b8e0-8ca76c4e008c
-    # TenantId of the Azure Service principal created.
-    tenant-id: c10899d7-fac0-4b82-98f4-e89021fb4476
-    # Azure subscriptionId
-    subscription-id: 0dcde382-dac2-44d0-b746-1e0bf404c20f
-    # Set this value to true to enable Azure PowerShell Login in addition to Az CLI login
-    # enable-AzPSSession: # optional
-    # Name of the environment. Supported values are azurecloud, azurestack, azureusgovernment, azurechinacloud, azuregermancloud. Default being azurecloud
-    # environment: # optional, default is azurecloud
-    # Set this value to true to enable support for accessing tenants without subscriptions
-    allow-no-subscriptions: # optional
-    # Provide audience field for access-token. Default value is api://AzureADTokenExchange
-    # audience: # optional, default is api://AzureADTokenExchange
-
-- name: Create Azure Blueprint
-  uses: neilpeterson/action-create-blueprint@v1.0.0.0-alpha
-
 name: CI
 
 on: [push]
@@ -50,9 +25,9 @@ jobs:
         BLUEPRINTNAME: testBluePrint
         SPNID: 35670f35-bbb7-4d20-b8e0-8ca76c4e008c
         SPNPASS: ${{ secrets.spnPass }}
-        TENANTID: eb73c9bc-7f90-4841-9556-c3a56cc82c79
+        TENANTID: c10899d7-fac0-4b82-98f4-e89021fb4476
         VERSION: 2.0.0
-        MGID: charotmg
+        MGID: Blueprints
       run: ./01-publishBlueprint.ps1
       shell: pwsh
   deploy:
@@ -67,7 +42,7 @@ jobs:
         BLUEPRINTNAME: testBluePrint
         SPNID: 35670f35-bbb7-4d20-b8e0-8ca76c4e008c
         SPNPASS: ${{ secrets.spnPass }}
-        TENANTID: eb73c9bc-7f90-4841-9556-c3a56cc82c79
+        TENANTID: c10899d7-fac0-4b82-98f4-e89021fb4476
         VERSION: 1.0.0
       run: ./02-assignBlueprint.ps1
       shell: pwsh
