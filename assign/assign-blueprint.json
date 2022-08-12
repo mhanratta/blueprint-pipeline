@@ -4,7 +4,7 @@
   },
   "location": "eastus",
   "properties": {
-    "description": "TWO enforce pre-defined simpleBlueprint to this XXXXXXXX subscription.",
+    "description": "Enforce pre-defined simple Blueprint to the Online 1 subscription.",
     "resourceGroups": {
       "blueprint-demo": {
         "name": "blueprint-demo-two",
