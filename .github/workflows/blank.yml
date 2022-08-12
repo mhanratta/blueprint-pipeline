@@ -15,7 +15,7 @@ jobs:
       with:
         azureManagementGroupName: Blueprints
         blueprintName: ${{ secrets.BLUEPRINTNAME }}
-        blueprintPath: .././create
+        blueprintPath: ../.././create
   deploy:
     needs: build
     runs-on: ubuntu-latest
@@ -31,4 +31,4 @@ jobs:
         azureManagementGroupName: ${{ secrets.AZUREMANAGEMENTGROUPNAME }}
         blueprintName: ${{ secrets.BLUEPRINTNAME }}
         azureSubscriptionID: 00000000-0000-0000-0000-000000000000
-        AssignmentFilePath: .././assign/assign-blueprint.json
+        AssignmentFilePath: ../.././assign/assign-blueprint.json
