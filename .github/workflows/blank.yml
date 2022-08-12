@@ -14,8 +14,8 @@ jobs:
         AZUREPASSWORD: ${{ secrets.AZUREPASSWORD }}
       with:
         azureManagementGroupName: Blueprints
-        blueprintName: GH-Actions-test
-        blueprintPath: ./create
+        blueprintName: ${{ secrets.BLUEPRINTNAME }}
+        blueprintPath: .././create
   deploy:
     needs: build
     runs-on: ubuntu-latest
@@ -28,7 +28,7 @@ jobs:
         AZURECLIENTID: ${{ secrets.AZURECLIENTID }}
       with:
         AssignmentName: GH-Action-BlueprintPublish
-        azureManagementGroupName: Blueprints
-        blueprintName: GH-Actions-test
+        azureManagementGroupName: ${{ secrets.AZUREMANAGEMENTGROUPNAME }}
+        blueprintName: ${{ secrets.BLUEPRINTNAME }}
         azureSubscriptionID: 00000000-0000-0000-0000-000000000000
-        AssignmentFilePath: ./assign/assign-blueprint.json
+        AssignmentFilePath: .././assign/assign-blueprint.json
