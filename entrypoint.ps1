@@ -18,8 +18,8 @@ $CreationScope = $Env:INPUT_SCOPE
 $BlueprintManagementGroup = $Env:INPUT_AZUREMANAGEMENTGROUPNAME
 $BlueprintSubscriptionID = $Env:INPUT_AZURESUBSCRIPTIONID
 
-$BlueprintName = $Env:INPUT_BLUEPRINTNAME
-$BlueprintPath = $Env:INPUT_BLUEPRINTPATH
+$BlueprintName = Blueprint.json
+$BlueprintPath = ./create
 $PublishBlueprint = $Env:INPUT_PUBLISHBLUEPRINT
 $BlueprintVersion = $Env:INPUT_VERSION
 
