@@ -18,6 +18,7 @@ inputs:
   blueprintName:
     description: 'Blueprint name'
     required: true
+    default: blueprint.json
   blueprintPath:
     description: 'Path to a directory with a blueprint.json file and a directory named artifacts'
     required: true
